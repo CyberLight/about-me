@@ -36,7 +36,7 @@ var styles = {
             color: 'white',
             backgroundColor: 'black',
             position: 'relative',
-            display: 'inline-block',
+            display: 'inline-block'
         },
         specialSymbol: {
             width: '10px',
@@ -69,7 +69,7 @@ var styles = {
           color: 'grey'
         }
     }
-}
+};
 
 // Components
 class Cursor extends React.Component {
@@ -161,7 +161,7 @@ class Line extends React.Component {
           this.state = {
             symbols: props.symbols || [],
             typeSymbols: [],
-            typedIndex: 1,
+            typedIndex: 1
           };
           this.runTyping = () => this._runTyping()
      }
@@ -261,15 +261,15 @@ class Me extends React.Component {
     super(props);
     this.state = {
       lines: [
-        {data:'grep cyberlight /etc/shadow > shadow.cyberlight'.split(''), waitAfter:2000, type:'line'},
+        {data:'grep cyberlight /etc/shadow > shadow.cyberlight'.split(''), waitAfter:1000, type:'line'},
         {data:'john shadow.cyberlight'.split(''), waitAfter:0, type:'line'},
         {data:'Loaded 1 password (FreeBSD MD5 [32/32])', waitAfter:1000, type:'line_info'},
-        {data:'guesses: 0 time: 0:02:00:00 (3) c/s: 100936 trying: sathut', waitAfter:5000, type:'line_info'},
-        {data:'guesses: 0 time: 0:04:00:00 (3) c/s: 354793 trying: cousun1', waitAfter:2000, type:'line_info'},
-        {data:'guesses: 0 time: 0:08:00:00 (3) c/s: 599784 trying: Co_aDfb', waitAfter:3000, type:'line_info'},
+        {data:'guesses: 0 time: 0:02:00:00 (3) c/s: 100936 trying: sathut', waitAfter:1000, type:'line_info'},
+        {data:'guesses: 0 time: 0:04:00:00 (3) c/s: 354793 trying: cousun1', waitAfter:1000, type:'line_info'},
+        {data:'guesses: 0 time: 0:08:00:00 (3) c/s: 599784 trying: Co_aDfb', waitAfter:1000, type:'line_info'},
         {data:'guesses: 1 time: 0:16:00:00 (3) c/s: 891224 trying: P4$$w3r|)', waitAfter:1000, type:'line_info'},
         {data:'su cyberlight'.split(''), waitAfter:1000, type:'line'},
-        {data:'Password:', waitAfter:3000, type:'line_info'},
+        {data:'Password:', waitAfter:1000, type:'line_info'},
         {data:{user:'cyberlight', path:"/", machine:"cyberlight-vm"}, waitAfter:1000, type:'user'},
         {data:'ls'.split(''), waitAfter:1000, type:'line'},
         {data:['contact','me', 'README', 'github', 'twitter', 'facebook'], waitAfter:1000, type:'line_info_files'},
@@ -301,7 +301,7 @@ class Me extends React.Component {
     if(this.state.typingIndex < this.state.lines.length){
       this.state.typeLines.push(this.state.lines[this.state.typingIndex]);
       this.setState({
-        typeLines: this.state.typeLines,
+        typeLines: this.state.typeLines
       });
     }
   }
@@ -322,19 +322,19 @@ class Me extends React.Component {
                         return <InfoLine key={"l_"+index}
                                 info={line.data}
                                 waitAfterFinish={line.waitAfter}
-                                onFinish={()=>this.handleOnFinish()}/>
+                                onFinish={()=>this.handleOnFinish()}/>;
                       case 'line_info_files':
                         return <InfoFilesLine key={"l_"+index}
                                 files={line.data}
                                 waitAfterFinish={line.waitAfter}
-                                onFinish={()=>this.handleOnFinish()}/>
+                                onFinish={()=>this.handleOnFinish()}/>;
                       case 'user':
                         return <TerminalUser key={"l_"+index}
                                 user={line.data.user}
                                 path={line.data.path}
                                 machine={line.data.machine}
                                 waitAfterFinish={line.waitAfter}
-                                onFinish={()=>this.handleOnFinish()}/>
+                                onFinish={()=>this.handleOnFinish()}/>;
                       default:
 
                     }
